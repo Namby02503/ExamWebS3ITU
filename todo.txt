@@ -1,0 +1,61 @@
+BACKOFFICE
+(OK)page 1:Login Admin
+    *Fonctions: 
+        -(OK)checkLogin(email,mdp,type)-> return id si existe
+                                    -> 0 si n'existe pas
+    *Base
+        -(OK)table personne (id,email,mdp)
+
+(OK)page2: Gestion de variete de the
+    *Fonctions:
+        -(OK)insertVarieteThe(nomVariete,occupation,rendement)
+    *Base:
+        -(OK)table varieteThe(id,nomVariete,occupation(m2/pied),rendement(kg/mois))
+(OK)page 3: Gestion des parcelles
+    *Fonctions:
+        -(OK)insertParcelle(numParcelle,surface,idVarieteThe)
+    *Base:
+        -(OK)table parcelle(numParcelle,surface(ha),idVarieteThe(foreign key))
+(OK)page 4:Gestion des cueilleurs
+    *Fonctions:
+        -(OK)insertCueilleur(nomCueilleur)
+    *Base:
+        -(OK)table cueilleur(id,nomCueilleur)
+(OK)page 5: Gestion des categories des dépenses
+    *Fonctions:
+        -insertCqtDepense(libelle)
+    *Base:
+        -(OK)table catDepense(id,libelle(unique))
+(OK)page 6: Configuration montant salaire par kg des cueilleurs
+    *Fonctions:
+        -insertSalaireCueilleur(idCueilleur,salaire)
+    *Base:
+        -(OK)salaireCueilleur(id,idCueilleur(fK),salaire)
+
+
+FRONTOFFICE
+page 1:Login Utilisateur
+    *Fonctions: 
+        -(OK)checkLogin(email,mdp,type)-> return id si existe
+                                    -> 0 si n'existe pas
+    *Base
+        -(OK)table personne (id,email,mdp)
+
+(OK)page 2: Saisi des cueillettes
+    *Fonctions:
+        -(OK)insertCueillette(dt,idCueilleur,idParcelle,poidsCueilli)
+        -(OK)calculPoidsFeuilleRestant(idParcelle,date)
+    *Base:
+        -(OK)cueillette(id,dt,idCueilleur,idParcelle,poidsCueilli)
+(OK)page 3: Saisi des depenses
+    *Fonctions:
+        -(OK)insertDepense(dt,idCatDepense,montant)
+    *Base:
+        -(OK)depense(id,dt,idCatDepense,montant)
+(OK)page 4:Resultat
+    *Fonctions:
+        -(OK)getPoidsTotalCueillette()
+        -(OK)utiliser getPoidsRestant()
+        -(OK)getCoutTotal
+        -(OK)calculCoutdeRevient/kg()
+    *Base:
