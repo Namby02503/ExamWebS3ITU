@@ -1,0 +1,206 @@
+BACKOFFICE
+(OK)page 1:Login Admin
+    *Affichage:
+        -(OK)formulaire de login(email,mdp, boutton valider)
+    *Fonctions: 
+        -(OK)checkLogin(email,mdp,type)-> return id si existe
+                                    -> 0 si n'existe pas
+    *Base
+        -(OK)table personne (id,email,mdp)
+    *Integration: 
+        -(OK)Recuperation de l'identification de l'admin
+        -(OK)Appel du fonction(chekLogin)
+(OK)page2: Gestion de variete de the
+    *Affichage:
+         -(OK)Sidebar ( formulaire d'insertion du varieté du thé (nom,occupation,rendement,boutton valider)  )
+    *Fonctions:
+        -(OK)insertVarieteThe(nomVariete,occupation,rendement)
+    *Base:
+        -(OK)table varieteThe(id,nomVariete,occupation(m2/pied),rendement(kg/mois))
+    *Integration:
+        -(OK)verification s'il y a des valeur ou pas dans la formulaire 
+        -(OK)recuperer la valeur dans l'insertion
+        -(OK)insertion dans la base de donnée  des valeur dans l'insertion par la fonction (insertVarieteThe)
+(OK)page 3: Gestion des parcelles
+    *Affichage:
+        -(OK)Sidebar ( formulaire d'insertion des parcelles (numéro parcelle, surface en hectare, variété de thé planté,
+boutton valider)  )
+    *Fonctions:
+        -(OK)insertParcelle(numParcelle,surface,idVarieteThe)
+    *Base:
+        -(OK)table parcelle(numParcelle,surface(ha),idVarieteThe(foreign key))
+    *Integration:
+        -(OK)verification s'il y a des valeur ou pas dans la formulaire  d'insertion de parcelle 
+         -(OK)recuperer la valeur dans l'insertion des parcelles
+        -(OK)insertion dans la base de donnée  des valeur dans l'insertion par la fonction (insertParcelle)
+
+(OK)page 4:Gestion des cueilleurs
+*Affichage:
+         -(OK)Sidebar ( formulaire d'insertion des cueilleurs (nom, genre, date de naissance,boutton valider)  )
+    *Fonctions:
+        -(OK)insertCueilleur(nomCueilleur)
+    *Base:
+        -(OK)table cueilleur(id,nomCueilleur)
+    *Integration:
+        -(OK)verification s'il y a des valeur ou pas dans la formulaire  d'insertion des cueilleurs 
+         -(OK)recuperer la valeur dans l'insertion des cueilleurs
+        -(OK)insertion dans la base de donnée  des valeur dans l'insertion par la fonction (insertCueilleur)
+
+(OK)page 5: Gestion des categories des dépenses
+     *Affichage:
+         -(OK)Sidebar ( formulaire d'insertion du catégorie du depense (type de catégorie,boutton valider)  )
+    *Fonctions:
+        -insertCqtDepense(libelle)
+    *Base:
+        -(OK)table catDepense(id,libelle(unique))
+    *Integration:
+         -(OK)verification s'il y a des valeur ou pas dans la formulaire  d'insertion de catégorie de dépense 
+         -(OK)recuperer la valeur dans l'insertion des dépense
+        -(OK)insertion dans la base de donnée  des valeur dans l'insertion par la fonction (insertCqDepense)
+
+(OK)page 6: Configuration montant salaire par kg des cueilleurs
+    *Affichage:
+         -(OK)Sidebar ( formulaire d'insertion du montant du salaire (montant,boutton valider)  )
+    *Fonctions:
+        -insertSalaireCueilleur(idCueilleur,salaire)
+    *Base:
+        -(OK)salaireCueilleur(id,idCueilleur(fK),salaire)
+    *Integration:
+         -(OK)verification s'il y a des valeur ou pas dans la formulaire de la configuration du montant de salaire 
+         -(OK)recuperer la valeur dans l'insertion du montant de salaire
+        -(OK)insertion dans la base de donnée  des valeur dans l'insertion par la fonction (insertSalaireCueilleur)
+
+(OK)page7 :traitementAdmin
+    *Integration
+FRONTOFFICE
+page 1:Login Utilisateur
+     *Affichage:      
+        -(OK)formulaire de login(email,mdp, boutton valider)
+    *Fonctions: 
+        -(OK)checkLogin(email,mdp,type)-> return id si existe
+                                    -> 0 si n'existe pas
+    *Base
+        -(OK)table personne (id,email,mdp)
+    *Integration:
+  -(OK)Recuperation de l'identification de l'utilisateur
+        -(OK)Appel du fonction(chekLogin)
+(OK)page 2: Saisi des cueillettes
+    *Affichage:
+         -(OK)Sidebar ( formulaire avec selection du choix (Date,Choix cueilleur,Choix parcelle,Poids cueilli,boutton valider)  )
+    *Fonctions:
+        -(OK)insertCueillette(dt,idCueilleur,idParcelle,poidsCueilli)
+        -(OK)calculPoidsFeuilleRestant(idParcelle,date)
+    *Base:
+        -(OK)cueillette(id,dt,idCueilleur,idParcelle,poidsCueilli)
+    *Integration:
+        -(OK)selection des (dt,idCueilleur,idParcelle,poidsCueilli) venant de la base
+        -(OK)recupération du poids du feuille restant
+         -(OK)validation ajax
+(OK)page 3: Saisi des depenses
+    *Affichage:
+        -(OK)Sidebar ( formulaire avec selection du choix (Date,Choix cueilleur,Choix parcelle,Poids cueilli,boutton valider)  )
+    *Fonctions:
+        -(OK)insertDepense(dt,idCatDepense,montant)
+    *Base:
+        -(OK)depense(id,dt,idCatDepense,montant)
+    *Integration:
+           -(OK)selection des choix dans le base venant du formulaire
+           -(OK)recupération des donnés choisis par l'utilisateur
+(OK)page 4:Resultat
+     *Affichage:
+         -(OK)Tableau pour l'affichage des resultats
+    *Fonctions:
+        -(OK)getPoidsTotalCueillette()
+        -(OK)utiliser getPoidsRestant()
+        -(OK)getCoutTotal
+        -(OK)calculCoutdeRevient/kg()
+    *Base:
+    *Integration:
+       -Affichage des reultats avec toutes les valeurs  
+Partie 2
+
+BACKOFFICE
+page 1: Configuration des mois où le the peut se regenerer
+    *Affichage:
+         -(OK)affichage des mois dans l'année ( checkbox ,boutton sauvegardé)
+    *Fonctions:
+        -(OK)crud
+    *Base:
+        -(OK)regenerationConfig(id,mois(int))
+    *Integration:
+        -(OK)recuperation du mois de la configuration
+
+page 2: Salaire min
+    *Affichage:
+         -(OK)formulaire d'insertion pour la configuration(Poids minimal journalier pour un cueilleur,
+ % de bonus (en montant) pour les poids supérieur au poids minimum,
+% de mallus ( en montant) si le poid est inférieur au poids minimum)
+
+    *Fonctions:
+        -(OK)crud
+    *Base:
+        -(OK)proprietePaiement(id,poidsMin(kg),pourcentageBonus,pourcentageMalus,dt)
+    *Integration:
+        -recupération des valeur dans la configuration
+page 4: Prix de vente par variete de the
+      -(OK)formulaire d'ajout du prix de vente par varieté de thé
+    *Fonctions:
+        -(OK)crud
+    *Base:
+        -(OK)prixVenteParVarieteThe(id,idVarieteThe,dt)
+    *Integration:
+        -(OK)recupération du prix de vente
+FRONTOFFICE
+page 1: Liste des paiements pour les cueilleurs
+     *Affichage:
+     -affichage en tableau la liste des paiments des cueilleurs(avec date début et date fin)
+    *Fonctions
+        -getTotalCueillette(dmin,dmax,idCueilleur)
+    *Base
+    *Integration:
+       -calcul des  prix de revient des cueilleur
+       -récupération du date début et fin des cueilleur(calcul date)
+page 2: Entre dmin et dmax: poids total cueillette,poids restant sur les parcelles,montant des ventes,montant des depenses,benefice,cout de revient par kilos
+    *Affichage:
+      -(OK)Affichage des date ; nom cueilleur; poids ; %bonus ; %mallus ; montant paiement
+    *Fonctions:
+        -(OK)getPoidsTotalCueillette(dmin,dmax)
+        -(OK)getPoidsRestant($date)
+        -(OK)getSommeVente(dmin,dmax)->getTotalCueilletteParVarietedeThe,somme(PrixVente*totalCueillette)
+        -(OK)getCoutTotal
+        -getBenefice: sommeVente-getCoutTotal
+        -(OK)calculCoutdeRevient/kg()
+    *Base
+    *Integration
+-(OK)récupération des donnes pour l'afficher
+page 3: Résultat global
+    *Affichage:
+      -(OK)Formulaire en entrant la date choisis 
+      -(OK)Tableau affichant les resultats entre date début et date fin(Poids total cueillette
+Poids restant sur les parcelles
+Montant des ventes
+Montant des dépenses
+Bénéfice
+Coût de revient par kg
+)
+    *Fonctions:
+       -
+    *Base:
+    *Integration:
+      -
+Partie 3
+FRONTOFFICE
+  page 1: Page de Prévision
+     *Affichage:
+        -(OK)formulaire de date pour la prévision(date,boutton valider)
+        -(OK)affichage des résultats apres clique sur valider
+        -affichage des parcelles avec (Numéro du parcelle,nom du parcelle,surface,...)
+     *Fonctions:
+     *Base:
+     *Integration:
+       -Ajax pour la récupération des donnés
+page 2 :traitement des données
+    *Affichage:
+    *Fonctions:
+    *Bases:
+    *Integration:

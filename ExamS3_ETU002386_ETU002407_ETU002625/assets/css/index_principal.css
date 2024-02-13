@@ -1,0 +1,27 @@
+.image{
+    background-image: url("../../img/img1.jpg");
+    width: 300px;
+    height: 300px;
+    border-radius: 5%;
+
+}
+.index{
+    background-color:white;
+    width: 250px;
+    height: 380px;
+    border-radius: 8%;
+    margin-left: 830px; 
+    margin-top: -300px;
+    box-shadow:8px 8px 8px 0px;
+}
+.adutilisateur{
+    margin-top: +80px;
+    margin-left:20px;
+}
+.mois {
+    background-color: white;
+    width: 1000px;
+    height: 400px;
+    box-shadow: 8px 8px 8px 0px;
+    margin-left: 100px; /* Décalage vers la gauche */
+}
